@@ -33,8 +33,6 @@ export async function signInWithEmail(email: string): Promise<ActionResponse> {
       emailRedirectTo: getURL('/auth/callback'),
     },
   });
-  console.log("🚀 ~ signInWithEmail ~ error:", error)
-
   if (error) {
     console.error(error);
     return { data: null, error: error };

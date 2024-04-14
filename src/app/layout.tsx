@@ -53,6 +53,13 @@ async function AppBar() {
   return (
     <header className='flex items-center justify-between py-8'>
       <Logo />
+      <div className='flex gap-7'>
+        <Link href='/tattoo-ideas' className=''>
+          Tattoo ideas
+        </Link>
+        <Link href='/explore'>Explore</Link>
+        <Link href='/pricing'>Pricing</Link>
+      </div>
       <Navigation />
     </header>
   );

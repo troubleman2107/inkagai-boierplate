@@ -18,15 +18,13 @@ export default async function HomePage() {
 function HeroSection() {
   return (
     <section className='relative overflow-hidden lg:overflow-visible'>
-      <Container className='relative rounded-lg bg-black py-20 lg:py-[140px]'>
+      <Container className='relative rounded-lg bg-slate-100 py-20 lg:py-[140px]'>
         <div className='relative z-10 flex flex-col gap-5 lg:max-w-xl lg:pl-8'>
-          <div className='w-fit rounded-full bg-gradient-to-r from-[#616571] via-[#7782A9] to-[#826674] px-4 py-1 '>
-            <span className='font-alt text-sm font-semibold text-black mix-blend-soft-light'>
-              Generate banners with DALL·E
-            </span>
+          <div className='w-fit rounded-full bg-slate-200 px-4 py-1 '>
+            <span className='font-alt text-sm font-semibold text-black'>Generate banners with DALL·E</span>
           </div>
           <h1>Instantly craft stunning Twitter banners.</h1>
-          <Button asChild variant='sexy'>
+          <Button asChild variant='default'>
             <Link href='/signup'>Get started for free</Link>
           </Button>
         </div>

@@ -6,6 +6,13 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
+type Metadata = {
+    image_editor: string;
+    support_level: string;
+    generated_images: string;
+    price_card_variant: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -88,7 +95,7 @@ export type Database = {
           description: string | null
           id: string
           image: string | null
-          metadata: Json | null
+          metadata: Metadata | null
           name: string | null
         }
         Insert: {
@@ -96,7 +103,7 @@ export type Database = {
           description?: string | null
           id: string
           image?: string | null
-          metadata?: Json | null
+          metadata?: Metadata | null
           name?: string | null
         }
         Update: {
@@ -104,7 +111,7 @@ export type Database = {
           description?: string | null
           id?: string
           image?: string | null
-          metadata?: Json | null
+          metadata?: Metadata | null
           name?: string | null
         }
         Relationships: []

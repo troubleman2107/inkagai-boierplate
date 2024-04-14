@@ -12,8 +12,8 @@ import { toast } from '@/components/ui/use-toast';
 import { ActionResponse } from '@/types/action-response';
 
 const titleMap = {
-  login: 'Login to UPDATE_THIS_WITH_YOUR_APP_DISPLAY_NAME',
-  signup: 'Join UPDATE_THIS_WITH_YOUR_APP_DISPLAY_NAME and start generating banners for free',
+  login: 'Login to Inkagai',
+  signup: 'Join Inkagai and start generating banners for free',
 } as const;
 
 export function AuthUI({
@@ -64,7 +64,7 @@ export function AuthUI({
   }
 
   return (
-    <section className='mt-16 flex w-full flex-col gap-16 rounded-lg bg-black p-10 px-4 text-center'>
+    <section className='mt-16 flex w-full flex-col gap-16 rounded-lg bg-slate-100 p-10 px-4 text-center'>
       <div className='flex flex-col gap-4'>
         <Image src='/logo.png' width={80} height={80} alt='' className='m-auto' />
         <h1 className='text-lg'>{titleMap[mode]}</h1>
@@ -78,26 +78,26 @@ export function AuthUI({
           <IoLogoGoogle size={20} />
           Continue with Google
         </button>
-        <button
+        {/* <button
           className='flex items-center justify-center gap-2 rounded-md bg-fuchsia-500 py-4 font-medium text-black transition-all hover:bg-fuchsia-400 disabled:bg-neutral-700'
           onClick={() => handleOAuthClick('github')}
           disabled={pending}
         >
           <IoLogoGithub size={20} />
           Continue with GitHub
-        </button>
+        </button> */}
 
         <Collapsible open={emailFormOpen} onOpenChange={setEmailFormOpen}>
           <CollapsibleTrigger asChild>
             <button
-              className='text-neutral6 flex w-full items-center justify-center gap-2 rounded-md bg-zinc-900 py-4 font-medium transition-all hover:bg-zinc-800 disabled:bg-neutral-700 disabled:text-black'
+              className='text-neutral6 flex w-full items-center justify-center gap-2 rounded-md bg-slate-200 py-4 font-medium transition-all hover:bg-slate-300 disabled:bg-neutral-700 disabled:text-black'
               disabled={pending}
             >
               Continue with Email
             </button>
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <div className='mt-[-2px] w-full rounded-b-md bg-zinc-900 p-8'>
+            <div className='mt-[-2px] w-full rounded-b-md bg-slate-200 p-8'>
               <form onSubmit={handleEmailSubmit}>
                 <Input
                   type='email'
