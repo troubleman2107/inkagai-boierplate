@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -7,20 +7,13 @@ import { Input } from '@/components/ui/input';
 import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
 import { useUserInfo } from '@/libs/stores';
-import { Database } from '@/libs/supabase/types';
+import { Session } from '@supabase/supabase-js';
 // import { getUser } from '@/features/account/controllers/get-user';
-type User = Database['public']['Tables']['users']['Row'];
 
-const CreateSection = ({ user }: { user: User | null }) => {
+const CreateSection = ({ session }: { session: Session | null }) => {
   const { toast } = useToast();
-  const { setUser } = useUserInfo();
-
-  useEffect(() => {
-    if (user) setUser(user);
-  }, [user, setUser]);
-
   function generateImages() {
-    if (!user) {
+    if (!session) {
       toast({
         variant: 'default',
         description: 'You must be logged in to generate images.',

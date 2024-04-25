@@ -44,7 +44,7 @@ function HeroSection() {
   );
 }
 
-export function ExamplesSection() {
+function ExamplesSection() {
   return (
     <section className='mt-6 flex flex-col gap-4 overflow-hidden rounded-lg bg-black py-8'>
       <div className='flex justify-center gap-4'>

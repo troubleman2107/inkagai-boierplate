@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { IoPersonCircleOutline } from 'react-icons/io5';
@@ -12,14 +13,22 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useUserInfo } from '@/libs/stores';
+import { Database } from '@/libs/supabase/types';
 import { ActionResponse } from '@/types/action-response';
 
 import { useToast } from './ui/use-toast';
 
-export function AccountMenu({ signOut }: { signOut: () => Promise<ActionResponse> }) {
+type User = Database['public']['Tables']['users']['Row'];
+
+export function AccountMenu({ signOut, user }: { signOut: () => Promise<ActionResponse>; user: User | null }) {
   const router = useRouter();
   const { toast } = useToast();
-  const { userInfo } = useUserInfo();
+  const { userInfo, setUser } = useUserInfo();
+
+  useEffect(() => {
+    if (user) setUser(user);
+  }, [user, setUser]);
+
   console.log('🚀 ~ AccountMenu ~ userInfo:', userInfo);
 
   async function handleLogoutClick() {

@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import type { Metadata } from 'next';
 import { Montserrat, Montserrat_Alternates } from 'next/font/google';
 import Link from 'next/link';
@@ -6,6 +6,8 @@ import { IoLogoFacebook, IoLogoInstagram, IoLogoTwitter } from 'react-icons/io5'
 
 import { Logo } from '@/components/logo';
 import { Toaster } from '@/components/ui/toaster';
+import { getUser } from '@/features/account/controllers/get-user';
+import { useUserInfo } from '@/libs/stores';
 import { cn } from '@/utils/cn';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -50,6 +52,13 @@ export default function RootLayout({ children }: PropsWithChildren) {
 }
 
 async function AppBar() {
+  // const user = await getUser();
+  // const { setUser } = useUserInfo();
+
+  // useEffect(() => {
+  //   if (user) setUser(user);
+  // }, [user, setUser]);
+
   return (
     <header className='flex items-center justify-between py-8'>
       <Logo />
@@ -58,7 +67,9 @@ async function AppBar() {
           Tattoo ideas
         </Link>
         <Link href='/explore'>Explore</Link>
-        <Link href='/pricing'>Pricing</Link>
+        <Link href='/pricing' prefetch={true}>
+          Pricing
+        </Link>
       </div>
       <Navigation />
     </header>
