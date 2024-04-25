@@ -15,7 +15,7 @@ export default async function LoginPage() {
   }
 
   if (session && !subscription) {
-    redirect('/pricing');
+    redirect('/create');
   }
 
   return (

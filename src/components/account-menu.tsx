@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useUserInfo } from '@/libs/stores';
 import { ActionResponse } from '@/types/action-response';
 
 import { useToast } from './ui/use-toast';
@@ -18,6 +19,8 @@ import { useToast } from './ui/use-toast';
 export function AccountMenu({ signOut }: { signOut: () => Promise<ActionResponse> }) {
   const router = useRouter();
   const { toast } = useToast();
+  const { userInfo } = useUserInfo();
+  console.log('🚀 ~ AccountMenu ~ userInfo:', userInfo);
 
   async function handleLogoutClick() {
     const response = await signOut();
@@ -43,7 +46,7 @@ export function AccountMenu({ signOut }: { signOut: () => Promise<ActionResponse
       </DropdownMenuTrigger>
       <DropdownMenuContent className='me-4'>
         <DropdownMenuItem asChild>
-          <Link href='/account'>Account</Link>
+          <Link href='/account'>Account ({userInfo?.credit})</Link>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogoutClick}>Log Out</DropdownMenuItem>
         <DropdownMenuArrow className='me-4 fill-white' />

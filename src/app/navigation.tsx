@@ -19,7 +19,9 @@ export async function Navigation() {
       ) : (
         <>
           <Button variant='default' className='hidden flex-shrink-0 lg:flex' asChild>
-            <Link href='/signup'>Get started for free</Link>
+            <Link href='/create' prefetch={true}>
+              Get started for free
+            </Link>
           </Button>
           <Sheet>
             <SheetTrigger className='block lg:hidden'>
@@ -30,7 +32,9 @@ export async function Navigation() {
                 <Logo />
                 <SheetDescription className='py-8'>
                   <Button variant='default' className='flex-shrink-0' asChild>
-                    <Link href='/signup'>Get started for free</Link>
+                    <Link href='/signup' prefetch={true}>
+                      Get started for free
+                    </Link>
                   </Button>
                 </SheetDescription>
               </SheetHeader>

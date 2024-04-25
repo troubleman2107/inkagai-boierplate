@@ -8,6 +8,8 @@ export async function getSubscription() {
     .select('*, prices(*, products(*))')
     .in('status', ['trialing', 'active'])
     .maybeSingle();
+    
+  console.log("🚀 ~ getSubscription ~ data:", data)
 
   if (error) {
     console.error(error);

@@ -25,7 +25,9 @@ function HeroSection() {
           </div>
           <h1>Instantly craft stunning Twitter banners.</h1>
           <Button asChild variant='default'>
-            <Link href='/signup'>Get started for free</Link>
+            <Link href='/create' prefetch={true}>
+              Get started for free
+            </Link>
           </Button>
         </div>
       </Container>
@@ -42,9 +44,9 @@ function HeroSection() {
   );
 }
 
-function ExamplesSection() {
+export function ExamplesSection() {
   return (
-    <section className='flex flex-col gap-4 overflow-hidden rounded-lg bg-black py-8'>
+    <section className='mt-6 flex flex-col gap-4 overflow-hidden rounded-lg bg-black py-8'>
       <div className='flex justify-center gap-4'>
         <Image
           className='flex-shrink-0'

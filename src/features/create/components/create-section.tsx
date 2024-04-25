@@ -1,28 +1,53 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import type { Database } from '@/libs/supabase/types';
+import { ToastAction } from '@/components/ui/toast';
+import { useToast } from '@/components/ui/use-toast';
+import { useUserInfo } from '@/libs/stores';
+import { Database } from '@/libs/supabase/types';
+// import { getUser } from '@/features/account/controllers/get-user';
+type User = Database['public']['Tables']['users']['Row'];
 
-type Products = Database['public']['Tables']['products']['Row'];
+const CreateSection = ({ user }: { user: User | null }) => {
+  const { toast } = useToast();
+  const { setUser } = useUserInfo();
 
-interface CreateSectionProps {
-  product: Products;
-}
+  useEffect(() => {
+    if (user) setUser(user);
+  }, [user, setUser]);
 
-const CreateSection = ({ product }: CreateSectionProps) => {
-  const { metadata } = product;
+  function generateImages() {
+    if (!user) {
+      toast({
+        variant: 'default',
+        description: 'You must be logged in to generate images.',
+        action: (
+          <Link href='/login' prefetch={true}>
+            <ToastAction altText='Go to login'>Login</ToastAction>
+          </Link>
+        ),
+      });
+
+      return;
+    }
+  }
+
   // Your code here
   return (
-    <section className='relative flex h-screen max-w-full rounded-lg bg-slate-50 px-16 py-8'>
-      <div className='w-2/3 pr-5'>
-        <h4 className='text-lg font-semibold'>AI Tattoo Designer</h4>
-        <Input placeholder='Type your idea' className='mt-3 h-12' />
-        <div className='mt-3'>
-          <Button className='w-full'>Create {metadata?.generated_images}</Button>
-        </div>
+    <section className='relative h-screen max-w-full rounded-lg px-20 py-8'>
+      <div className='flex'>
+        <Input
+          placeholder='Type your idea'
+          className='h-12 rounded-none rounded-l-lg focus-visible:border-dashed focus-visible:ring-0'
+        />
+        <Button variant='default' className='h-12 rounded-none rounded-r-lg' onClick={() => generateImages()}>
+          Generate
+        </Button>
       </div>
-      <div className='w-full bg-slate-100'>Output Create</div>
+      {/* <ExamplesSection /> */}
     </section>
   );
 };

@@ -64,6 +64,5 @@ export async function supabaseMiddlewareClient(req: NextRequest) {
   // This will refresh session if expired - required for Server Components
   // https://supabase.com/docs/guides/auth/server-side/nextjs
   const { data: user, error } = await supabase.auth.getUser();
-
   return { res, supabase, user, error };
 }

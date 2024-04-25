@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
       .maybeSingle();
 
     if (!userSubscription) {
-      return NextResponse.redirect(`${siteUrl}/pricing`);
+      return NextResponse.redirect(`${siteUrl}/create`);
     } else {
       return NextResponse.redirect(`${siteUrl}`);
     }
